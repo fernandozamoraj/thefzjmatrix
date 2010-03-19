@@ -1,0 +1,136 @@
+<Configuration>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:System.Drawing.Font">
+      <Item value="Size" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:TheMatrix.MatrixFrm">
+      <Item value="MaximumSize" priority="0" />
+      <Item value="Hide" priority="2" />
+      <Item value="Visible" priority="1" />
+      <Item value="Close" priority="0" />
+      <Item value="SendToBack" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Default">
+      <Item value="new" priority="0" />
+      <Item value="Size" priority="0" />
+      <Item value="width" priority="0" />
+      <Item value="height" priority="2" />
+      <Item value="if" priority="1" />
+      <Item value="Bounds" priority="0" />
+      <Item value="Graphics" priority="2" />
+      <Item value="_ParentWindow" priority="3" />
+      <Item value="_InPreviewMode" priority="1" />
+      <Item value="else" priority="0" />
+      <Item value="this" priority="8" />
+      <Item value="false" priority="3" />
+      <Item value="frm" priority="4" />
+      <Item value="Close" priority="1" />
+      <Item value="Application" priority="2" />
+      <Item value="base" priority="0" />
+      <Item value="g" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Rectangle">
+      <Item value="Height" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Drawing.Graphics">
+      <Item value="FromHwnd" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.Form">
+      <Item value="Visible" priority="1" />
+      <Item value="Close" priority="0" />
+      <Item value="WndProc" priority="0" />
+      <Item value="Hide" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Windows.Forms.Application">
+      <Item value="Exit" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Graphics">
+      <Item value="InterpolationMode" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <EditorManager>
+    <RecentFiles>
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AssemblyInfo.cs" caret="0" visual-x="0" visual-y="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AboutDlg.cs" caret="0" visual-x="0" visual-y="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Settings.cs" caret="0" visual-x="0" visual-y="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.cs" caret="0" visual-x="0" visual-y="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="3520" visual-x="0" visual-y="1494" />
+      <File id="UNDEFINED_UNIQUE_NAME_MiscellaneousFiles/f:SAMS1E.sln" caret="0" visual-x="0" visual-y="0" />
+    </RecentFiles>
+  </EditorManager>
+  <FileStructureView>
+    <AutoScrollToSource>False</AutoScrollToSource>
+    <TrackCaretLocation>False</TrackCaretLocation>
+  </FileStructureView>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <ReFormatCode>
+    <OptimizeUsings>False</OptimizeUsings>
+    <RemoveRedundantThis>False</RemoveRedundantThis>
+    <ShortenReferences>False</ShortenReferences>
+    <DecorateModifiers>False</DecorateModifiers>
+  </ReFormatCode>
+  <SharedSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </SharedSolutionDisabledTemplatesManager>
+  <UserSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </UserSolutionDisabledTemplatesManager>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Settings.cs" caret="682" fromTop="14" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.cs" caret="12552" fromTop="15" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.resx" caret="2645" fromTop="30" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.resx" caret="6008" fromTop="30" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AboutDlg.resx" caret="2645" fromTop="30" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AboutDlg.cs" caret="1414" fromTop="15" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="12062" fromTop="423" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="13320" fromTop="11" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="12618" fromTop="13" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="12290" fromTop="20" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="11585" fromTop="16" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="5852" fromTop="6" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="5369" fromTop="7" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="9316" fromTop="21" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="17485" fromTop="22" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="17299" fromTop="14" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="9926" fromTop="13" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="9323" fromTop="15" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="9926" fromTop="10" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="5468" fromTop="20" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="5808" fromTop="17" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="9317" fromTop="21" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="9085" fromTop="4" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="9202" fromTop="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="6136" fromTop="25" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="6136" fromTop="18" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="6425" fromTop="22" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="4895" fromTop="12" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="599" fromTop="10" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="962" fromTop="18" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="9470" fromTop="12" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="6317" fromTop="14" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="10395" fromTop="29" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="10395" fromTop="22" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="10376" fromTop="14" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="8876" fromTop="13" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="10154" fromTop="12" />
+    </RecentEdits>
+  </RecentFiles>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerMSTest>
+    <UseTestRunConfigFromMetadataFile>False</UseTestRunConfigFromMetadataFile>
+  </UnitTestRunnerMSTest>
+</Configuration>
