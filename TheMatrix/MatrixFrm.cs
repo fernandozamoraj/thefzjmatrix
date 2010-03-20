@@ -410,7 +410,7 @@ namespace TheMatrix
 
 	        if(_inPreviewMode)
 	        {
-	            Graphics.FromHwnd(_ParentWindow);
+	            graphics = Graphics.FromHwnd(_ParentWindow);
 	        }
 	        else
 	        {
