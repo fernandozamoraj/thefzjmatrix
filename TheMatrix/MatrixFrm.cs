@@ -363,37 +363,46 @@ namespace TheMatrix
 
 				int xPos = _Rand.Next(this.Width/charWidth) * charWidth;
 				//xPos = xPos - (xPos%charWidth);
-				
-
 				int i = 0;
 
 				Point prev = new Point(xPos, 0);
 
 				char myChar = _CharArray[_Rand.Next(_CharArray.Length)];
+
+                //This is some FUNKY code that needs to be cleaned up
 				int num1 = Convert.ToInt32(300/(_Settings.Sleep*1.0));
 				int num2 = Convert.ToInt32(300/(num1 * 1.0));
-				int sleep = (_Rand.Next(num1)*num2)+20;
+				int sleep = (_Rand.Next(num1)*num2)+10;
 
-				int firstNum = _Rand.Next(15)+5;
-
-				Colors color = _Settings.Color;
-
-				int iColor=_Rand.Next(3);
-
+			    ColorTheme colorTheme = GetColorTheme(_Settings.Color);
 				
 				if(_Settings.MultiColored)
 				{
+                    int iColor = _Rand.Next(3);
+
 					switch(iColor)
 					{
-						case 0: color = Colors.Green; break;
-						case 1: color= Colors.Blue;   break;
-						case 2: color= Colors.Red;    break;
+						case 0: colorTheme = GetColorTheme( Colors.Green ); break;
+                        case 1: colorTheme = GetColorTheme(Colors.Blue); break;
+                        case 2: colorTheme = GetColorTheme(Colors.Red); break;
 					}
 				}
 
-			
-				for(i=2; i < this.Height/_Font.Height+firstNum;i++)
+                //This allows the legnth nof the string to vary
+                //where each span has a different length
+                //in essence this will randomize the length of the strings
+			    int lightestColorSpan = _Rand.Next(2)+1;
+			    int lighterColorSpan = _Rand.Next(5) + lightestColorSpan;
+			    int darkerColorSpan = _Rand.Next(7) + lighterColorSpan;
+			    int darkestColorSpan = (15) + darkerColorSpan;
+
+                //This little line here insures that the lines
+			    int finishLine = darkerColorSpan*2 + 1;
+                
+				for(i=2; i < this.Height/_Font.Height+finishLine+1;i++)
 				{
+                    Rectangle eraseRectangle = new Rectangle();
+
 					if(_Settings.RandomChars)
 					{
 						myChar = _CharArray[_Rand.Next(_CharArray.Length)];
@@ -402,102 +411,48 @@ namespace TheMatrix
 					{
 						myChar = _CharArray[(i-2)%_CharArray.Length];
 					}
-
-
-					if(color == Colors.Green)
+			    
+					if(i >= finishLine)
 					{
-						if(i >= firstNum)
-						{
-							g.FillRectangle(System.Drawing.Brushes.Black, prev.X, (i-firstNum)*_Font.Height, eraseWidth, _Font.Height);	
-						}
-				
-						if(i>9)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Black, prev.X, (i-9)*_Font.Height);
-						}
-						if(i>7)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.DarkGreen, prev.X, (i-7)*_Font.Height);
-						}
-						if(i>5)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Green, prev.X, (i-5)*_Font.Height);
-						}
-
-				
-						if(i>3)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.LawnGreen, prev.X, (i-3)*_Font.Height);
-						}
-
-						g.FillRectangle(System.Drawing.Brushes.Black, prev.X+i, prev.Y, eraseWidth, _Font.Height);
-						g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.LightGreen, prev.X, prev.Y);
-						System.Threading.Thread.Sleep(sleep);
+						g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i-finishLine)*_Font.Height, eraseWidth, _Font.Height);	
 					}
-					else if(color == Colors.Blue)
+			
+					if(i>darkestColorSpan)
 					{
-						if(i >= firstNum)
-						{
-							g.FillRectangle(System.Drawing.Brushes.Black, prev.X, (i-firstNum)*_Font.Height, eraseWidth, _Font.Height);	
-						}
-				
-						if(i>9)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Black, prev.X, (i-9)*_Font.Height);
-						}
-						if(i>7)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.DarkBlue, prev.X, (i-7)*_Font.Height);
-						}
-						if(i>5)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Navy, prev.X, (i-5)*_Font.Height);
-						}
-				
-						if(i>3)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.DodgerBlue, prev.X, (i-3)*_Font.Height);
-						}
-
-						g.FillRectangle(System.Drawing.Brushes.Black, prev.X, prev.Y, eraseWidth, _Font.Height);
-						g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.LightBlue, prev.X, prev.Y);
-						System.Threading.Thread.Sleep(sleep);
-					}
-					else if(color == Colors.Red)
-					{
-						if(i >= firstNum)
-						{
-							g.FillRectangle(System.Drawing.Brushes.Black, prev.X, (i-firstNum)*_Font.Height, eraseWidth, _Font.Height);	
-						}
-				
-						if(i>9)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Black, prev.X, (i-9)*_Font.Height);
-						}
-						if(i>7)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Maroon, prev.X, (i-7)*_Font.Height);
-						}
-						if(i>5)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Red, prev.X, (i-5)*_Font.Height);
-						}
-				
-						if(i>3)
-						{
-							g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Salmon, prev.X, (i-3)*_Font.Height);
-						}
-
-						g.FillRectangle(System.Drawing.Brushes.Black, prev.X, prev.Y, eraseWidth, _Font.Height);
-						g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Pink, prev.X, prev.Y);
-						System.Threading.Thread.Sleep(sleep);
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkestColorSpan) * _Font.Height, eraseWidth, _Font.Height);
+						g.DrawString(myChar.ToString(), _Font, colorTheme.BackGroundColor, prev.X, (i-darkestColorSpan)*_Font.Height);
 					}
 
+					if(i>darkerColorSpan)
+					{
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkerColorSpan) * _Font.Height, eraseWidth, _Font.Height);
+                        g.DrawString(myChar.ToString(), _Font, colorTheme.DarkestColor, prev.X, (i-darkerColorSpan)*_Font.Height);
+					}
+				
+                    if(i>lighterColorSpan)
+					{
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lighterColorSpan) * _Font.Height, eraseWidth, _Font.Height);
+                        g.DrawString(myChar.ToString(), _Font, colorTheme.LighterColor, prev.X, (i-lighterColorSpan)*_Font.Height);
+					}
+                    
+					if(i>lightestColorSpan)
+					{
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lightestColorSpan) * _Font.Height, eraseWidth, _Font.Height);
+                        g.DrawString(myChar.ToString(), _Font, colorTheme.LigthestColor, prev.X, (i-lightestColorSpan)*_Font.Height);
+					}
+
+                    if (i <= lightestColorSpan)
+                    {
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X + i, prev.Y, eraseWidth, _Font.Height);
+                        g.DrawString(myChar.ToString(), _Font, colorTheme.LigthestColor, prev.X, prev.Y);
+                    }
+
+				    System.Threading.Thread.Sleep(sleep);
+				
 					prev = new Point(xPos, i*_Font.Height);
 				}
 
-				g.FillRectangle(System.Drawing.Brushes.Black, prev.X, 0, eraseWidth, _Font.Height);	
-				
+				g.FillRectangle(colorTheme.BackGroundColor, prev.X, 0, eraseWidth, _Font.Height);	
 				g.Dispose();	
 			}
 			catch
@@ -508,9 +463,36 @@ namespace TheMatrix
 			{
 				_ThreadCount--;
 			}
-
 		}
-		
+
+        public ColorTheme GetColorTheme(Colors color)
+        {
+            ColorTheme colorTheme = new ColorTheme();
+
+            colorTheme.BackGroundColor = Brushes.Black;
+            colorTheme.DarkestColor = Brushes.DarkGreen;
+            colorTheme.DarkColor = Brushes.Green;
+            colorTheme.LighterColor = Brushes.Green;
+            colorTheme.LigthestColor = Brushes.LightGreen;
+
+            if (color == Colors.Blue)
+            {
+                colorTheme.DarkestColor = Brushes.DarkBlue;
+                colorTheme.DarkColor = Brushes.Navy;
+                colorTheme.LighterColor = Brushes.DodgerBlue;
+                colorTheme.LigthestColor = Brushes.LightBlue;
+            }
+            if (color == Colors.Red)
+            {
+                colorTheme.DarkestColor = Brushes.Maroon;
+                colorTheme.DarkColor = Brushes.Red;
+                colorTheme.LighterColor = Brushes.Salmon;
+                colorTheme.LigthestColor = Brushes.Pink;
+            }
+
+            return colorTheme;
+        }
+
 		/// <summary>
 		/// Prints characters down the screen.  If called enouhg times from new threads
 		/// it will create a "Matrix" like screen
