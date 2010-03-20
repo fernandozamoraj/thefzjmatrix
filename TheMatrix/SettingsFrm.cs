@@ -343,7 +343,7 @@ namespace TheMatrix
 			try
 			{
 			
-				using(StreamReader sr = new StreamReader(MatrixFrm._SettingsFileName))
+				using(StreamReader sr = new StreamReader(MatrixFrm.SettingsFileName))
 				{
 					_Settings = (Settings)bin.Deserialize(sr.BaseStream);
 				}

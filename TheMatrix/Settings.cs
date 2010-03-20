@@ -3,15 +3,7 @@ using System.Drawing;
 
 namespace TheMatrix
 {
-	public enum Colors
-	{
-		Green,
-		Red,
-		Blue,
-
-	}
-
-	/// <summary>
+    /// <summary>
 	/// Summary description for Settings.
 	/// </summary>
 	/// 
@@ -31,7 +23,7 @@ namespace TheMatrix
 
 		private bool _MultiColored = false;
 		private bool _RandomChars  = true;
-		private int _MaxThreads = 30;
+		private int _MaxThreads = 100;
 		private int _FontSize = 12;
         private Font _Font = new Font("Courier New", 24);
 

@@ -13,7 +13,7 @@ namespace TheMatrix
 	/// <summary>
 	/// Summary description for Form1.
 	/// </summary>
-	public class MatrixFrm : System.Windows.Forms.Form
+	public class MatrixFrm : System.Windows.Forms.Form, IDrawingHost
 	{
 		private System.ComponentModel.IContainer components;
 		private int ScreenNumber = 0;
@@ -51,7 +51,7 @@ namespace TheMatrix
 			//
 			InitializeComponent();
 
-            _InPreviewMode = preview;
+            _inPreviewMode = preview;
 
 			_ParentWindow = new IntPtr(int.Parse(parentWindowHandle));
 		}
@@ -66,14 +66,6 @@ namespace TheMatrix
 			ScreenNumber = screenNum;
 
 		}
-
-
-
-		System.Drawing.Color lightestGreen = Color.FromArgb(50, 100, 50);
-		System.Drawing.Color lighterGreen = Color.FromArgb(50, 150, 50);
-		System.Drawing.Color Greed = Color.FromArgb(50, 200, 50);
-		private System.Windows.Forms.Timer timer1;
-		System.Drawing.Color DarkGreen = Color.FromArgb(50, 255, 50);
 
 		/// <summary>
 		/// Clean up any resources being used.
@@ -98,13 +90,13 @@ namespace TheMatrix
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this._timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // timer1
+            // _timer1
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this._timer1.Enabled = true;
+            this._timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MatrixFrm
             // 
@@ -146,7 +138,7 @@ namespace TheMatrix
 					
 							System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bin = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-							using(StreamWriter sw = new StreamWriter(MatrixFrm._SettingsFileName))
+							using(StreamWriter sw = new StreamWriter(MatrixFrm.SettingsFileName))
 							{
 								bin.Serialize(sw.BaseStream, f.Settings);
 							}
@@ -171,23 +163,21 @@ namespace TheMatrix
 				}	
 				
 		}
-        
-		private bool _InPreviewMode = false;
 
-        private void Form1_Load(object sender, System.EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
+            WindowState = FormWindowState.Normal;
 
             
             Rectangle bounds = GetFormBounds();
 
-            if (_InPreviewMode)
+            if (_inPreviewMode)
             {
-                this.Width = 200;
-                this.Height = 200;
+                Width = 200;
+                Height = 200;
                 Bounds = new Rectangle(0, 0, Width, Height);
-                this.WindowState = FormWindowState.Normal;
-                System.Windows.Forms.Form frm = (System.Windows.Forms.Form)System.Windows.Forms.Form.FromHandle(_ParentWindow);
+                WindowState = FormWindowState.Normal;
+                Form frm = (System.Windows.Forms.Form)FromHandle(_ParentWindow);
                 
                 
                 if (frm != null)
@@ -198,18 +188,18 @@ namespace TheMatrix
                 }
 
                 //setting the preview as the parent
-                SetParent(this.Handle, _ParentWindow);
+                SetParent(Handle, _ParentWindow);
 
                 //In order to close when parent closes or changes, make this the child
-                SetWindowLong(this.Handle, -16, new IntPtr(GetWindowLong(this.Handle, -16) | 0x40000000));
+                SetWindowLong(Handle, -16, new IntPtr(GetWindowLong(Handle, -16) | 0x40000000));
                 
             }
             else
             {
-                this.MaximumSize = new Size(bounds.Width, bounds.Height);
-                this.Size = new Size(bounds.Width, bounds.Height);
+                MaximumSize = new Size(bounds.Width, bounds.Height);
+                Size = new Size(bounds.Width, bounds.Height);
 
-                this.MaximizedBounds = new Rectangle(bounds.X, bounds.Y, bounds.Width, bounds.Height);
+                MaximizedBounds = new Rectangle(bounds.X, bounds.Y, bounds.Width, bounds.Height);
                 Bounds = new Rectangle(bounds.X, bounds.Y, bounds.Width, bounds.Height);
             }
 
@@ -217,17 +207,10 @@ namespace TheMatrix
             TopMost = true;
 
             LoadSettings();
-
-            if (_InPreviewMode)
-            {
-                _Font = new Font("CourierNew", 8);
-            }
-
         }
 
         private Rectangle GetFormBounds()
         {
-            Rectangle bounds;
             int height = 0;
             int width = 0;
             int xPos = 0;
@@ -262,35 +245,20 @@ namespace TheMatrix
             width = Math.Abs(xPos) + rightBounds;
             height = Math.Abs(yPos) + bottomBounds;
 
-            bounds = new Rectangle(xPos, yPos, width, height);
+            Rectangle bounds = new Rectangle(xPos, yPos, width, height);
 
             return bounds;
         }
 
-
-		public static string _SettingsFileName = "C:\\TheMatrixSettings.bin";
-
-		private void LoadSettings()
+        private void LoadSettings()
 		{
 			System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bin = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
 			try
 			{
-				using(StreamReader sr = new StreamReader(_SettingsFileName))
+				using(StreamReader sr = new StreamReader(SettingsFileName))
 				{
-					_Settings = (Settings)bin.Deserialize(sr.BaseStream);
-
-					try
-					{
-						//_Font = new Font(_Settings.FontName, _Settings.FontSize);
-
-						_Font = _Settings.Font;
-					}
-					catch
-					{
-						_Font = new Font("courier new", _Settings.Font.Size);
-					
-					}
+					_settings = (Settings)bin.Deserialize(sr.BaseStream);
 				}
 			}
 			catch
@@ -298,181 +266,43 @@ namespace TheMatrix
 				//File may not exist yet
 			}
 
-			this.timer1.Interval = _Settings.Sleep;
+			_timer1.Interval = _settings.Sleep;
 		}
 
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-
-
-        }
-
-
-
 		Random _Rand = new Random();
-		Font _Font = new Font("Courier New", 20);
+	    int _ThreadCount;
+	    char[] _CharArray;
+        public static string SettingsFileName = "C:\\TheMatrixSettings.bin";
+        Settings _settings;
+        private readonly bool _inPreviewMode;
+        private Timer _timer1;
 
-		private void timer1_Tick(object sender, System.EventArgs e)
+		private void timer1_Tick(object sender, EventArgs e)
 		{
-			if(_ThreadCount < _Settings.MaxThreads)
+			if(_ThreadCount < _settings.MaxThreads)
 			{	
 				_ThreadCount++;
-				System.Threading.ThreadStart ts = new System.Threading.ThreadStart(PrintChar);
+				System.Threading.ThreadStart ts = PrintChar;
 				System.Threading.Thread t = new System.Threading.Thread(ts);
 				t.Start();
 			}
 		}
 
+        void PrintChar()
+        {
+            SentinelPrinter printer = new SentinelPrinter(this);
 
-		char[] _CharArray=null;
+            printer.Draw();
+        }
 
-		private void LoadCharArray()
-		{
-			_CharArray = _Settings.CharacterSet.ToCharArray();
-		}
-
-		private Settings _Settings = new Settings();
-
-		int _ThreadCount = 0;
-
-		private void PrintChar()
-		{
-			try
-			{
-			    Graphics g;
-				if(_CharArray==null)
-				{
-					LoadCharArray();
-				}
-
-                //If preview mode you need to create graphics from your IntPtr parent window
-                if(_InPreviewMode)
-                {
-                    g = Graphics.FromHwnd(_ParentWindow);
-                }
-                else
-                {
-                    g = this.CreateGraphics();
-                }
-				
-				int charWidth = Convert.ToInt32(g.MeasureString("W", _Font).Width);
-				int eraseWidth = (int)(charWidth * 1);
-
-				int xPos = _Rand.Next(this.Width/charWidth) * charWidth;
-				//xPos = xPos - (xPos%charWidth);
-				int i = 0;
-
-				Point prev = new Point(xPos, 0);
-
-				char myChar = _CharArray[_Rand.Next(_CharArray.Length)];
-
-                //This is some FUNKY code that needs to be cleaned up
-				int num1 = Convert.ToInt32(300/(_Settings.Sleep*1.0));
-				int num2 = Convert.ToInt32(300/(num1 * 1.0));
-				int sleep = (_Rand.Next(num1)*num2)+10;
-
-			    ColorTheme colorTheme = GetColorTheme(_Settings.Color);
-				
-				if(_Settings.MultiColored)
-				{
-                    int iColor = _Rand.Next(3);
-
-					switch(iColor)
-					{
-						case 0: colorTheme = GetColorTheme( Colors.Green ); break;
-                        case 1: colorTheme = GetColorTheme(Colors.Blue); break;
-                        case 2: colorTheme = GetColorTheme(Colors.Red); break;
-					}
-				}
-
-                //This allows the legnth nof the string to vary
-                //where each span has a different length
-                //in essence this will randomize the length of the strings
-			    int lightestColorSpan = _Rand.Next(2)+1;
-			    int lighterColorSpan = _Rand.Next(5) + lightestColorSpan;
-			    int darkerColorSpan = _Rand.Next(7) + lighterColorSpan;
-			    int darkestColorSpan = (15) + darkerColorSpan;
-
-                //This little line here insures that the lines
-			    int finishLine = darkerColorSpan*2 + 1;
-                
-				for(i=2; i < this.Height/_Font.Height+finishLine+1;i++)
-				{
-                    Rectangle eraseRectangle = new Rectangle();
-
-					if(_Settings.RandomChars)
-					{
-						myChar = _CharArray[_Rand.Next(_CharArray.Length)];
-					}
-					else
-					{
-						myChar = _CharArray[(i-2)%_CharArray.Length];
-					}
-			    
-					if(i >= finishLine)
-					{
-						g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i-finishLine)*_Font.Height, eraseWidth, _Font.Height);	
-					}
-			
-					if(i>darkestColorSpan)
-					{
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkestColorSpan) * _Font.Height, eraseWidth, _Font.Height);
-						g.DrawString(myChar.ToString(), _Font, colorTheme.BackGroundColor, prev.X, (i-darkestColorSpan)*_Font.Height);
-					}
-
-					if(i>darkerColorSpan)
-					{
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkerColorSpan) * _Font.Height, eraseWidth, _Font.Height);
-                        g.DrawString(myChar.ToString(), _Font, colorTheme.DarkestColor, prev.X, (i-darkerColorSpan)*_Font.Height);
-					}
-				
-                    if(i>lighterColorSpan)
-					{
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lighterColorSpan) * _Font.Height, eraseWidth, _Font.Height);
-                        g.DrawString(myChar.ToString(), _Font, colorTheme.LighterColor, prev.X, (i-lighterColorSpan)*_Font.Height);
-					}
-                    
-					if(i>lightestColorSpan)
-					{
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lightestColorSpan) * _Font.Height, eraseWidth, _Font.Height);
-                        g.DrawString(myChar.ToString(), _Font, colorTheme.LigthestColor, prev.X, (i-lightestColorSpan)*_Font.Height);
-					}
-
-                    if (i <= lightestColorSpan)
-                    {
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X + i, prev.Y, eraseWidth, _Font.Height);
-                        g.DrawString(myChar.ToString(), _Font, colorTheme.LigthestColor, prev.X, prev.Y);
-                    }
-
-				    System.Threading.Thread.Sleep(sleep);
-				
-					prev = new Point(xPos, i*_Font.Height);
-				}
-
-				g.FillRectangle(colorTheme.BackGroundColor, prev.X, 0, eraseWidth, _Font.Height);	
-				g.Dispose();	
-			}
-			catch
-			{
-			
-			}
-			finally
-			{
-				_ThreadCount--;
-			}
-		}
-
-        public ColorTheme GetColorTheme(Colors color)
+	    public ColorTheme GetColorTheme(Colors color)
         {
             ColorTheme colorTheme = new ColorTheme();
 
             colorTheme.BackGroundColor = Brushes.Black;
             colorTheme.DarkestColor = Brushes.DarkGreen;
             colorTheme.DarkColor = Brushes.Green;
-            colorTheme.LighterColor = Brushes.Green;
+            colorTheme.LighterColor = Brushes.LimeGreen;
             colorTheme.LigthestColor = Brushes.LightGreen;
 
             if (color == Colors.Blue)
@@ -493,78 +323,7 @@ namespace TheMatrix
             return colorTheme;
         }
 
-		/// <summary>
-		/// Prints characters down the screen.  If called enouhg times from new threads
-		/// it will create a "Matrix" like screen
-		/// </summary>
-		private void PrintChar2()
-		{
-			Graphics g = this.CreateGraphics();
-			try
-			{
-				if(_CharArray==null)
-				{
-					LoadCharArray();
-				}				
-
-				int xPos =  _Rand.Next(this.Width);
-
-				xPos = xPos - (xPos%Convert.ToInt32(g.MeasureString("g", _Font).Width));
-
-				int i = 0;
-
-				Point prev = new Point(xPos, 0);
-
-				char myChar = _CharArray[_Rand.Next(_CharArray.Length)];
-				int sleep = _Rand.Next(100);
-
-				int firstNum = _Rand.Next(15)+5;
-
-				for(i=2; i < this.Height/_Font.Height+firstNum;i++)
-				{
-					myChar = _CharArray[_Rand.Next(_CharArray.Length)];
-
-					if(i >= firstNum)
-					{
-						g.FillRectangle(System.Drawing.Brushes.Black, prev.X, (i-firstNum)*_Font.Height, 15, _Font.Height);	
-					}
-			
-					if(i>9)
-					{
-						g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Black, prev.X, (i-9)*_Font.Height);
-					}
-					if(i>7)
-					{
-						g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.DarkGreen, prev.X, (i-7)*_Font.Height);
-					}
-					if(i>5)
-					{
-						g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.Green, prev.X, (i-5)*_Font.Height);
-					}
-			
-					if(i>3)
-					{
-						g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.LawnGreen, prev.X, (i-3)*_Font.Height);
-					}
-
-					g.FillRectangle(System.Drawing.Brushes.Black, prev.X+i, prev.Y, 15, _Font.Height);
-					g.DrawString(myChar.ToString(), _Font, System.Drawing.Brushes.LightGreen, prev.X, prev.Y);
-					System.Threading.Thread.Sleep(sleep + 10);
-					
-					prev = new Point(xPos, i*_Font.Height);
-				}
-
-                g.FillRectangle(System.Drawing.Brushes.Black, prev.X, 0, 15, _Font.Height);	
-									
-			}
-			finally
-			{
-				_ThreadCount--;
-				g.Dispose();
-			}
-		}
-
-		private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		private void Form1_Closing(object sender, CancelEventArgs e)
 		{
 			
 		}
@@ -584,19 +343,104 @@ namespace TheMatrix
 			}
 		}
 
-		Point MouseXY = new Point();
+		Point _mouseXy = new Point();
 
 		private void OnMouseEvent(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-			if (!MouseXY.IsEmpty)
+			if (!_mouseXy.IsEmpty)
 			{
-                if (MouseXY != new Point(e.X, e.Y))
+                if (_mouseXy != new Point(e.X, e.Y))
                     Close();
                 if (e.Clicks > 0)
                     Close();
 			}
-			MouseXY = new Point(e.X, e.Y);
+			_mouseXy = new Point(e.X, e.Y);
 		}
 
+	    public ColorTheme GetColorTheme()
+	    {
+	        ColorTheme colorTheme = GetColorTheme(_settings.Color);
+
+            if (_settings.MultiColored)
+            {
+                int iColor = _Rand.Next(3);
+
+                switch (iColor)
+                {
+                    case 0: colorTheme = GetColorTheme(Colors.Green); break;
+                    case 1: colorTheme = GetColorTheme(Colors.Blue); break;
+                    case 2: colorTheme = GetColorTheme(Colors.Red); break;
+                }
+            }
+
+	        return colorTheme;
+	    }
+
+	    public int GetWidth()
+	    {
+	        return Width;
+	    }
+
+	    public Settings Settings
+	    {
+	        get { return _settings; }
+	    }
+
+	    public int GetHeight()
+	    {
+            return Height;
+	    }
+
+	    public char[] CharArray
+	    {
+	        get
+	        {
+                if(_CharArray == null)
+                {
+                    _CharArray = _settings.CharacterSet.ToCharArray();
+                }
+
+	            return _CharArray;
+	        }
+	    }
+
+	    public Graphics GetGraphics()
+	    {
+	        Graphics graphics = null;
+
+	        if(_inPreviewMode)
+	        {
+	            Graphics.FromHwnd(_ParentWindow);
+	        }
+	        else
+	        {
+	            graphics = CreateGraphics();
+	        }
+
+	        return graphics;
+	    }
+
+	    public void ReduceThreadCount()
+	    {
+	        --_ThreadCount;
+	    }
+
+	    public char GetNextCharacter()
+	    {
+	        _currentCharacter++;
+            if(_currentCharacter > _CharArray.Length)
+            {
+                _currentCharacter = 0;
+            }
+
+	        if (_settings.RandomChars)
+	        {
+	            return _CharArray[_Rand.Next(_CharArray.Length)]; 
+	        }
+	        
+            return _CharArray[_currentCharacter%_CharArray.Length];
+	    }
+
+        private int _currentCharacter = -1;
 	}
 }
