@@ -124,6 +124,6 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>copy "$(TargetDir)*.exe" "$(TargetDir)TheFzjMatrix.scr"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)TheMatrix.exe" "$(TargetDir)TheFzjMatrix.scr"</PostBuildEvent>
   </PropertyGroup>
 </Project>

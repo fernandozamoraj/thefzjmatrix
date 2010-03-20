@@ -269,7 +269,7 @@ namespace TheMatrix
 			_timer1.Interval = _settings.Sleep;
 		}
 
-		Random _Rand = new Random();
+		Random _Rand = new Random((int)DateTime.Now.Ticks);
 	    int _ThreadCount;
 	    char[] _CharArray;
         public static string SettingsFileName = "C:\\TheMatrixSettings.bin";

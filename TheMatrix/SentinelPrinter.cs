@@ -83,36 +83,36 @@ namespace TheMatrix
                     
                     if (i >= finishLine)
                     {
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - finishLine) * _Font.Height, eraseWidth, _Font.Height);
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - finishLine) * _Font.Height, eraseWidth+3, _Font.Height);
                     }
 
                     if (i > darkestColorSpan)
                     {
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkestColorSpan) * _Font.Height, eraseWidth, _Font.Height);
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkestColorSpan) * _Font.Height, eraseWidth+3, _Font.Height);
                         g.DrawString(myChar.ToString(), _Font, colorTheme.BackGroundColor, prev.X, (i - darkestColorSpan) * _Font.Height);
                     }
 
                     if (i > darkerColorSpan)
                     {
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkerColorSpan) * _Font.Height, eraseWidth, _Font.Height);
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkerColorSpan) * _Font.Height, eraseWidth+3, _Font.Height);
                         g.DrawString(myChar.ToString(), _Font, colorTheme.DarkestColor, prev.X, (i - darkerColorSpan) * _Font.Height);
                     }
 
                     if (i > lighterColorSpan)
                     {
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lighterColorSpan) * _Font.Height, eraseWidth, _Font.Height);
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lighterColorSpan) * _Font.Height, eraseWidth+3, _Font.Height);
                         g.DrawString(myChar.ToString(), _Font, colorTheme.LighterColor, prev.X, (i - lighterColorSpan) * _Font.Height);
                     }
 
                     if (i > lightestColorSpan)
                     {
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lightestColorSpan) * _Font.Height, eraseWidth, _Font.Height);
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lightestColorSpan) * _Font.Height, eraseWidth+3, _Font.Height);
                         g.DrawString(myChar.ToString(), _Font, colorTheme.LigthestColor, prev.X, (i - lightestColorSpan) * _Font.Height);
                     }
 
                     if (i <= lightestColorSpan)
                     {
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X + i, prev.Y, eraseWidth, _Font.Height);
+                        g.FillRectangle(colorTheme.BackGroundColor, prev.X + i, prev.Y, eraseWidth+3, _Font.Height);
                         g.DrawString(myChar.ToString(), _Font, colorTheme.LigthestColor, prev.X, prev.Y);
                     }
 
@@ -121,7 +121,7 @@ namespace TheMatrix
                     prev = new Point(xPos, i * _Font.Height);
                 }
 
-                g.FillRectangle(colorTheme.BackGroundColor, prev.X, 0, eraseWidth, _Font.Height);
+                g.FillRectangle(colorTheme.BackGroundColor, prev.X, 0, eraseWidth+3, _Font.Height);
                 g.Dispose();
             }
             catch
