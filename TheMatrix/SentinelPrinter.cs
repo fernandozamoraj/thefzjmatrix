@@ -62,24 +62,41 @@ namespace TheMatrix
 
                 }
 
+                //With more threads the sleep time has to be decreased
+                if(_drawingHost.Settings.MaxThreads > 50)
+                {
+                    sleep = sleep/2;
+                }
+                else if(_drawingHost.Settings.MaxThreads > 100)
+                {
+                    sleep = sleep/4;
+                }
+                else if(_drawingHost.Settings.MaxThreads > 150)
+                {
+                    sleep = sleep/6;
+                }
+
                 ColorTheme colorTheme = _drawingHost.GetColorTheme();
 
 
                 //This allows the legnth nof the string to vary
                 //where each span has a different length
                 //in essence this will randomize the length of the strings
-                int lightestColorSpan = _Rand.Next(2) + 1;
-                int lighterColorSpan = _Rand.Next(5) + lightestColorSpan;
-                int darkerColorSpan = _Rand.Next(7) + lighterColorSpan;
-                int darkestColorSpan = (15) + darkerColorSpan;
+                int lightestColorSpan = _Rand.Next(3) + 1;
+                int lighterColorSpan = _Rand.Next(7) + lightestColorSpan;
+                int darkerColorSpan = _Rand.Next(9) + lighterColorSpan;
+                int darkestColorSpan = _Rand.Next(21) + darkerColorSpan*2;
 
                 //This little line here insures that the lines
-                int finishLine = darkerColorSpan * 2 + 1;
+                int finishLine = darkerColorSpan*2 + 1;
+
+                List<char> charsPrinted = new List<char>();
 
                 for (i = 2; i < _drawingHost.GetHeight() / _Font.Height + finishLine + 1; i++)
                 {
                     
                     myChar = _drawingHost.GetNextCharacter();
+                    charsPrinted.Add(myChar);
                     
                     if (i >= finishLine)
                     {
@@ -89,30 +106,30 @@ namespace TheMatrix
                     if (i > darkestColorSpan)
                     {
                         g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkestColorSpan) * _Font.Height, eraseWidth+3, _Font.Height);
-                        g.DrawString(myChar.ToString(), _Font, colorTheme.BackGroundColor, prev.X, (i - darkestColorSpan) * _Font.Height);
+                        g.DrawString(charsPrinted[i-darkestColorSpan].ToString(), _Font, colorTheme.BackGroundColor, prev.X, (i - darkestColorSpan) * _Font.Height);
                     }
-
-                    if (i > darkerColorSpan)
+                    
+                    if(i > darkerColorSpan)
                     {
                         g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - darkerColorSpan) * _Font.Height, eraseWidth+3, _Font.Height);
-                        g.DrawString(myChar.ToString(), _Font, colorTheme.DarkestColor, prev.X, (i - darkerColorSpan) * _Font.Height);
+                        g.DrawString(charsPrinted[i - darkerColorSpan].ToString(), _Font, colorTheme.DarkColor, prev.X, (i - darkerColorSpan) * _Font.Height);
                     }
-
+                    
                     if (i > lighterColorSpan)
                     {
                         g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lighterColorSpan) * _Font.Height, eraseWidth+3, _Font.Height);
-                        g.DrawString(myChar.ToString(), _Font, colorTheme.LighterColor, prev.X, (i - lighterColorSpan) * _Font.Height);
+                        g.DrawString(charsPrinted[i - lighterColorSpan].ToString(), _Font, colorTheme.LighterColor, prev.X, (i - lighterColorSpan) * _Font.Height);
                     }
-
+                    
                     if (i > lightestColorSpan)
                     {
                         g.FillRectangle(colorTheme.BackGroundColor, prev.X, (i - lightestColorSpan) * _Font.Height, eraseWidth+3, _Font.Height);
-                        g.DrawString(myChar.ToString(), _Font, colorTheme.LigthestColor, prev.X, (i - lightestColorSpan) * _Font.Height);
+                        g.DrawString(charsPrinted[i - lightestColorSpan].ToString(), _Font, colorTheme.LigthestColor, prev.X, (i - lightestColorSpan) * _Font.Height);
                     }
-
+                    
                     if (i <= lightestColorSpan)
                     {
-                        g.FillRectangle(colorTheme.BackGroundColor, prev.X + i, prev.Y, eraseWidth+3, _Font.Height);
+                        //g.FillRectangle(colorTheme.BackGroundColor, prev.X + i, prev.Y, eraseWidth+3, _Font.Height);
                         g.DrawString(myChar.ToString(), _Font, colorTheme.LigthestColor, prev.X, prev.Y);
                     }
 

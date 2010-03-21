@@ -104,7 +104,7 @@ namespace TheMatrix
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(200, 200);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "MatrixFrm";
             this.ShowInTaskbar = false;
@@ -438,7 +438,7 @@ namespace TheMatrix
 	            return _CharArray[_Rand.Next(_CharArray.Length)]; 
 	        }
 	        
-            return _CharArray[_currentCharacter%_CharArray.Length];
+            return _CharArray[_currentCharacter];
 	    }
 
         private int _currentCharacter = -1;
