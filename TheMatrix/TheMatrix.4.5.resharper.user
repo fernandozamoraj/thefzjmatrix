@@ -15,7 +15,7 @@
       <Item value="Width" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Default">
-      <Item value="new" priority="4" />
+      <Item value="new" priority="5" />
       <Item value="Size" priority="0" />
       <Item value="width" priority="0" />
       <Item value="height" priority="2" />
@@ -74,7 +74,7 @@
       <Item value="drawingHost" priority="1" />
       <Item value="_drawingHost" priority="9" />
       <Item value="Random" priority="1" />
-      <Item value="Font" priority="0" />
+      <Item value="Font" priority="1" />
       <Item value="IDrawingHost" priority="0" />
       <Item value="Settings" priority="0" />
       <Item value="PrintPreviewControl" priority="0" />
@@ -89,6 +89,7 @@
       <Item value="_CurrentCharacter" priority="2" />
       <Item value="private" priority="0" />
       <Item value="eraseWidth" priority="0" />
+      <Item value="txtFontName" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Drawing.Rectangle">
       <Item value="Height" priority="0" />
@@ -169,6 +170,9 @@
     <ItemStatistics item="Qualified:System.DateTime">
       <Item value="Ticks" priority="1" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.TextBox">
+      <Item value="Font" priority="0" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
   <EditorManager>
     <RecentFiles>
@@ -208,25 +212,19 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.cs" caret="12552" fromTop="15" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.resx" caret="2645" fromTop="30" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.resx" caret="6013" fromTop="30" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.resx" caret="6008" fromTop="30" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AboutDlg.resx" caret="2645" fromTop="30" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AboutDlg.cs" caret="1414" fromTop="15" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:ColorTheme.cs" caret="66" fromTop="4" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Colors.cs" caret="40" fromTop="2" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Settings.cs" caret="62" fromTop="4" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:IDrawingHost.cs" caret="329" fromTop="13" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="11888" fromTop="0" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SentinelPrinter.cs" caret="3794" fromTop="101" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:ColorTheme.cs" caret="0" fromTop="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:IDrawingHost.cs" caret="0" fromTop="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.cs" caret="1856" fromTop="32" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="8891" fromTop="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SentinelPrinter.cs" caret="658" fromTop="14" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Settings.cs" caret="862" fromTop="0" />
     </RecentFiles>
     <RecentEdits>
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="1952" fromTop="23" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="1671" fromTop="7" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="4956" fromTop="2" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="5960" fromTop="17" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="8264" fromTop="14" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="8384" fromTop="8" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="11600" fromTop="17" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="11441" fromTop="7" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="6207" fromTop="3" />
@@ -251,6 +249,12 @@
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SentinelPrinter.cs" caret="5034" fromTop="16" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SentinelPrinter.cs" caret="2929" fromTop="2" />
       <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="8340" fromTop="7" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Settings.cs" caret="618" fromTop="20" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="0" fromTop="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Settings.cs" caret="860" fromTop="4" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SentinelPrinter.cs" caret="658" fromTop="14" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SentinelPrinter.cs" caret="6013" fromTop="14" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.cs" caret="1856" fromTop="14" />
     </RecentEdits>
   </RecentFiles>
   <UnitTestRunner>

@@ -19,13 +19,14 @@ namespace TheMatrix
 
 		private int _Sleep = 40;
 		private Colors _Color = Colors.Green;
-		private string _CharacterSet = "1234567890!@#$%^&*()_+-={}[]|\\qwertyuiopasdfghjklzxcvbnm:\";'<>,.?/QWERTYUIOPASDFGHJKLZXCVBNM     ";
-
+		//private string _CharacterSet = "1234567890!@#$%^&*()_+-={}[]|\\qwertyuiopasdfghjklzxcvbnm:\";'<>,.?/QWERTYUIOPASDFGHJKLZXCVBNM     ";
+        //Changed letters because these are the only ones that Matrix font has
+        private string _CharacterSet = "123456780abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLT   ";
 		private bool _MultiColored = false;
 		private bool _RandomChars  = true;
 		private int _MaxThreads = 100;
 		private int _FontSize = 12;
-        private Font _Font = new Font("Courier New", 24);
+        private Font _Font = new System.Drawing.Font("mCode15", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
 
 		public Font Font
 		{

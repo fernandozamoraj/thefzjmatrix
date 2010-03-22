@@ -119,6 +119,8 @@
     </EmbeddedResource>
     <Content Include="App.ico" />
     <Content Include="App1.ico" />
+    <Content Include="Images\matrixBanner.jpg" />
+    <Content Include="Images\matrixsplashscreen.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
