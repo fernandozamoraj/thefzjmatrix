@@ -95,7 +95,6 @@ namespace TheMatrix
             // 
             // _timer1
             // 
-            this._timer1.Enabled = true;
             this._timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MatrixFrm
@@ -207,6 +206,9 @@ namespace TheMatrix
             TopMost = true;
 
             LoadSettings();
+
+            _timer1.Interval = 20;
+            _timer1.Enabled = true;
         }
 
         private Rectangle GetFormBounds()
@@ -266,7 +268,7 @@ namespace TheMatrix
 				//File may not exist yet
 			}
 
-			_timer1.Interval = _settings.Sleep;
+            EnsureSettingsIsSet();
 		}
 
 		Random _Rand = new Random((int)DateTime.Now.Ticks);
@@ -279,6 +281,8 @@ namespace TheMatrix
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
+            EnsureSettingsIsSet();
+
 			if(_ThreadCount < _settings.MaxThreads)
 			{	
 				_ThreadCount++;
@@ -287,6 +291,14 @@ namespace TheMatrix
 				t.Start();
 			}
 		}
+
+        private void EnsureSettingsIsSet()
+        {
+            if (_settings == null)
+            {
+                _settings = new Settings();
+            }
+        }
 
         void PrintChar()
         {
