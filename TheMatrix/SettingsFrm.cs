@@ -348,22 +348,15 @@ namespace TheMatrix
 
 		private void SettingsFrm_Load(object sender, System.EventArgs e)
 		{
-			System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bin = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
 			try
 			{
-			
-				using(StreamReader sr = new StreamReader(MatrixFrm.SettingsFileName))
-				{
-					_Settings = (Settings)bin.Deserialize(sr.BaseStream);
-				}
+               _Settings = new IsolatedStorage().ReadSettings(MatrixFrm.SettingsFileName);
 			}
 			catch
 			{
-				_Settings=new Settings();
+				_Settings = new Settings();
 			}
-
-
+            
 			chbxRandomChar.Checked    = _Settings.RandomChars;
 			chbxMultiColored.Checked  = _Settings.MultiColored;
 			trackBarSpeed.Value       =_Settings.Sleep;

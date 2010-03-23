@@ -134,13 +134,7 @@ namespace TheMatrix
 
 						if(f.ShowDialog()==DialogResult.OK)
 						{
-					
-							System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bin = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
-							using(StreamWriter sw = new StreamWriter(MatrixFrm.SettingsFileName))
-							{
-								bin.Serialize(sw.BaseStream, f.Settings);
-							}
+                            new IsolatedStorage().WriteAppSettings(MatrixFrm.SettingsFileName, f.Settings);
 						}
 					}
 					else if (args[0].ToLower() == "/s") // load the screensaver
@@ -254,14 +248,9 @@ namespace TheMatrix
 
         private void LoadSettings()
 		{
-			System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bin = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
 			try
 			{
-				using(StreamReader sr = new StreamReader(SettingsFileName))
-				{
-					_settings = (Settings)bin.Deserialize(sr.BaseStream);
-				}
+                _settings =   new IsolatedStorage().ReadSettings(SettingsFileName);
 			}
 			catch
 			{
@@ -274,7 +263,14 @@ namespace TheMatrix
 		Random _Rand = new Random((int)DateTime.Now.Ticks);
 	    int _ThreadCount;
 	    char[] _CharArray;
-        public static string SettingsFileName = "C:\\TheMatrixSettings.bin";
+        public static string SettingsFileName
+        {
+            get
+            { 
+                return "TheMatrixSettings.settings";
+            }
+        }
+
         Settings _settings;
         private readonly bool _inPreviewMode;
         private Timer _timer1;
