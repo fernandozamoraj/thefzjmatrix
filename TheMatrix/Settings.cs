@@ -24,7 +24,7 @@ namespace TheMatrix
         private string _CharacterSet = "123456780abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLT   ";
 		private bool _MultiColored = false;
 		private bool _RandomChars  = true;
-		private int _MaxThreads = 100;
+		private int _MaxThreads = 30;
 		private int _FontSize = 12;
         private Font _Font = new System.Drawing.Font("mCode15", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
 

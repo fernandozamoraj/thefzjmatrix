@@ -430,7 +430,8 @@ namespace TheMatrix
 
 	    public void ReduceThreadCount()
 	    {
-	        --_ThreadCount;
+            if(_ThreadCount > 0)
+                --_ThreadCount;
 	    }
 
 	    public char GetNextCharacter()
