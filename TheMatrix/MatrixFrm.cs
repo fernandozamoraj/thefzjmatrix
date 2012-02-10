@@ -3,10 +3,12 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 using System.Data;
 using System.Text;
 using System.IO;
+using Timer = System.Windows.Forms.Timer;
 
 namespace TheMatrix
 {
@@ -282,10 +284,16 @@ namespace TheMatrix
 			if(_ThreadCount < _settings.MaxThreads)
 			{	
 				_ThreadCount++;
-				System.Threading.ThreadStart ts = PrintChar;
+				System.Threading.ThreadStart ts = ((_mode == 1) ? PrintChar :  new ThreadStart(PrintChar2));
 				System.Threading.Thread t = new System.Threading.Thread(ts);
 				t.Start();
 			}
+
+            if (_stopWatch.IsExpired())
+            {
+                SwitchMode();
+            }
+
 		}
 
         private void EnsureSettingsIsSet()
@@ -296,6 +304,9 @@ namespace TheMatrix
             }
         }
 
+        StopWatch _stopWatch = new StopWatch();
+	    private int _mode = 1;
+
         void PrintChar()
         {
             SentinelPrinter printer = new SentinelPrinter(this);
@@ -303,6 +314,32 @@ namespace TheMatrix
             printer.Draw();
         }
 
+        void PrintChar2()
+        {
+            PromptPrinter printer = new PromptPrinter(this);
+            printer.Draw();
+        }
+
+        private void SwitchMode()
+        {
+            _mode = (_mode + 1);
+
+            if (_mode == 3)
+                _mode = 1;
+
+            switch (_mode)
+            {
+                case 1: _stopWatch.Start(50000);
+                    break;
+                case 2:
+
+                    _stopWatch.Start(10000);
+                    break;
+            }
+        }
+
+        
+        
 	    public ColorTheme GetColorTheme(Colors color)
         {
             ColorTheme colorTheme = new ColorTheme();
@@ -312,6 +349,7 @@ namespace TheMatrix
             colorTheme.DarkColor = Brushes.Green;
             colorTheme.LighterColor = Brushes.LimeGreen;
             colorTheme.LigthestColor = Brushes.LightGreen;
+	        colorTheme.NoReallyLigthestColor = Brushes.White;
 
             if (color == Colors.Blue)
             {
@@ -450,6 +488,11 @@ namespace TheMatrix
             return _CharArray[_currentCharacter];
 	    }
 
-        private int _currentCharacter = -1;
+	    public int Mode
+	    {
+            get { return _mode; }
+	    }
+
+	    private int _currentCharacter = -1;
 	}
 }

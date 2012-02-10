@@ -12,5 +12,6 @@ namespace TheMatrix
         Graphics GetGraphics();
         void ReduceThreadCount();
         char GetNextCharacter();
+        int Mode { get; }
     }
 }
