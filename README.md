@@ -1,5 +1,7 @@
 # thefzjmatrix
-The Fzj Matrix is an executable that can run as a screen save a la matrix style.  
+The Fzj Matrix is an executable that can run as a screen save a la matrix style.
+
+This repository contains all the code to build the application.  It was written with an older version of Visual Studio 2003 I believe. So you may have to migrate the code to the latest version of Visual Studio.
 
 It behaves very similar to the screens that cyper and tank monitored.
 
