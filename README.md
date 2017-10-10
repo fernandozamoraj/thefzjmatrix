@@ -1,10 +1,12 @@
 # thefzjmatrix
 The Fzj Matrix is a screen saver for Windows (XP, Windows 7, Windows 8, Windows 10).
 
-If all you need is the installation file you can download them from the links below.
+If all you need is the installation file you can download the appropriate one from one of the links below.
 
 [MatrixSetup.msi](https://github.com/fernandozamoraj/thefzjmatrix/blob/master/MatrixSetup.msi)
 [setup.exe](https://github.com/fernandozamoraj/thefzjmatrix/blob/master/setup.exe)
+
+Check out the page at [github.io](https://fernandozamoraj.github.io/thefzjmatrix/)
 
 This repository contains all the code to build the application.  It was written with an older version of Visual Studio 2003 I believe. So you may have to migrate the code to the latest version of Visual Studio.
 
