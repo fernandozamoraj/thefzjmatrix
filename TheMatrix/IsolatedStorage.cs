@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
@@ -15,17 +13,20 @@ namespace TheMatrix
         {
             try
             {
-                IsolatedStorageFile isf =
-                    System.IO.IsolatedStorage.IsolatedStorageFile.
-                           GetStore(
-                    IsolatedStorageScope.User |
-                    IsolatedStorageScope.Assembly, null, null);
-                Stream writer =
-                    new IsolatedStorageFileStream(filename,
-                                                  FileMode.Create, isf);
-                IFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(writer, settings);
-                writer.Close();
+                //stopped using IsolatedStorage becasue no matter how hard I tried it was sketchy
+                //and did not read it..
+                //it would read and write when writing settings but it would not read when the app ran
+                string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                string filePath = Path.Combine(folderPath, filename);
+
+                using(BinaryWriter br = new BinaryWriter(File.Open(filePath, FileMode.OpenOrCreate)) )
+                {
+                    Stream writer = br.BaseStream;
+
+                    IFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(writer, settings);
+                    writer.Close();    
+                }
             }
             catch (Exception ex)
             {
@@ -35,27 +36,23 @@ namespace TheMatrix
 
         public Settings ReadSettings(string filename)
         {
-            try
-            {
-                IsolatedStorageFile isf =
-                    System.IO.IsolatedStorage.IsolatedStorageFile.
-                           GetStore(
-                    IsolatedStorageScope.User |
-                    IsolatedStorageScope.Assembly, null, null);
-                Stream reader =
-                    new IsolatedStorageFileStream(filename, FileMode.
-                                                  Open, isf);
-                IFormatter formatter = new BinaryFormatter();
-                Settings settings = (Settings)formatter.
-                                         Deserialize(reader);
-                reader.Close();
+            //stopped using IsolatedStorage becasue no matter how hard I tried it was sketchy
+            //and did not read it..
+            //it would read and write when writing settings but it would not read when the app ran
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filePath = Path.Combine(folderPath, filename);
 
-                return settings;
-            }
-            catch (Exception ex)
+            Settings settings = null;
+
+            using(BinaryReader br = new BinaryReader(File.Open(filePath, FileMode.OpenOrCreate)))
             {
-                throw new ApplicationException("ReadSettings failed", ex);
+                Stream reader = br.BaseStream;         
+                IFormatter formatter = new BinaryFormatter();
+                settings = (Settings)formatter.Deserialize(reader);
+                reader.Close();
             }
+
+            return settings;
         }
     }
 }

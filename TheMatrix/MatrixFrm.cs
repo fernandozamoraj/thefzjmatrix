@@ -131,13 +131,20 @@ namespace TheMatrix
 				{
 					// load the config stuff
 					if (args[0].ToLower().Trim().Substring(0,2) == "/c") 
-					{						
-						SettingsFrm f = new SettingsFrm();
+					{	
+					    try
+					    {
+                            SettingsFrm f = new SettingsFrm();
 
-						if(f.ShowDialog()==DialogResult.OK)
-						{
-                            new IsolatedStorage().WriteAppSettings(MatrixFrm.SettingsFileName, f.Settings);
-						}
+                            if (f.ShowDialog() == DialogResult.OK)
+                            {
+                                new IsolatedStorage().WriteAppSettings(MatrixFrm.SettingsFileName, f.Settings);
+                            }					        
+					    }
+                        catch(Exception e)
+                        {
+                            MessageBox.Show("Failed to write AppSettings " + e);
+                        }
 					}
 					else if (args[0].ToLower() == "/s") // load the screensaver
 					{
@@ -252,11 +259,13 @@ namespace TheMatrix
 		{
 			try
 			{
-                _settings =   new IsolatedStorage().ReadSettings(SettingsFileName);
+                SettingsFrm settingsFrm = new SettingsFrm();
+                settingsFrm.ReadSettings();
+			    _settings = settingsFrm.Settings;
 			}
-			catch
+			catch(Exception e)
 			{
-				//File may not exist yet
+			    MessageBox.Show("Settings failed to load " + e);
 			}
 
             EnsureSettingsIsSet();

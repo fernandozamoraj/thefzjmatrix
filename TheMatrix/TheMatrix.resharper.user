@@ -6,12 +6,12 @@
   </CompletionStatisticsManager>
   <EditorManager>
     <RecentFiles>
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AssemblyInfo.cs" caret="0" visual-x="0" visual-y="0" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AboutDlg.cs" caret="0" visual-x="0" visual-y="0" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Settings.cs" caret="0" visual-x="0" visual-y="0" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.cs" caret="0" visual-x="0" visual-y="0" />
-      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="3520" visual-x="0" visual-y="1494" />
-      <File id="UNDEFINED_UNIQUE_NAME_MiscellaneousFiles/f:SAMS1E.sln" caret="0" visual-x="0" visual-y="0" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AssemblyInfo.cs" caret="0" scrollPosition="" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:AboutDlg.cs" caret="0" scrollPosition="" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:Settings.cs" caret="0" scrollPosition="" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SettingsFrm.cs" caret="0" scrollPosition="" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:MatrixFrm.cs" caret="3520" scrollPosition="" />
+      <File id="CBA7E9EB-1585-4D82-855A-FDEF8FCC1962/f:SentinelPrinter.cs" caret="2162" scrollPosition="0|69" />
     </RecentFiles>
   </EditorManager>
   <FileStructureView>
@@ -22,14 +22,28 @@
     <NAntPath value="" />
   </NAntValidationSettings>
   <ReFormatCode>
+    <ReorderMembers>False</ReorderMembers>
     <OptimizeUsings>False</OptimizeUsings>
     <RemoveRedundantThis>False</RemoveRedundantThis>
     <ShortenReferences>False</ShortenReferences>
-    <DecorateModifiers>False</DecorateModifiers>
   </ReFormatCode>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
   <SharedSolutionDisabledTemplatesManager>
     <DisabledTemplates />
   </SharedSolutionDisabledTemplatesManager>
+  <UnitTestRunner>
+    <CustomStartDirectory>
+    </CustomStartDirectory>
+    <UseShadowCopy>True</UseShadowCopy>
+    <UseCustomFolder>False</UseCustomFolder>
+    <Providers />
+  </UnitTestRunner>
   <UserSolutionDisabledTemplatesManager>
     <DisabledTemplates />
   </UserSolutionDisabledTemplatesManager>

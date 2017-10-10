@@ -346,16 +346,22 @@ namespace TheMatrix
 		}
 		#endregion
 
+        public void ReadSettings()
+        {
+            try
+            {
+                _Settings = new IsolatedStorage().ReadSettings(MatrixFrm.SettingsFileName);
+            }
+            catch //(Exception ex) //for debugging only
+            {
+                //MessageBox.Show("" + ex); //for DEBUGGING ONLY
+                _Settings = new Settings();
+            }
+        }
+
 		private void SettingsFrm_Load(object sender, System.EventArgs e)
 		{
-			try
-			{
-               _Settings = new IsolatedStorage().ReadSettings(MatrixFrm.SettingsFileName);
-			}
-			catch
-			{
-				_Settings = new Settings();
-			}
+			ReadSettings();
             
 			chbxRandomChar.Checked    = _Settings.RandomChars;
 			chbxMultiColored.Checked  = _Settings.MultiColored;
