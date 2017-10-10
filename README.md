@@ -6,3 +6,7 @@ This repository contains all the code to build the application.  It was written 
 It behaves very similar to the screens that cypher and tank monitored.
 
 It works o Windows XP, Windows 7 and 10.  I don't know if it works on windows 8 but I imagine that it would.
+
+I don't own the license to the matrix font but you can download it for your own private use from [http://www.fontspace.com/norfok-incredible-font-design/matrix-code-nfi](http://www.fontspace.com/norfok-incredible-font-design/matrix-code-nfi)
+
+Once you download the font you can set your screen saver settings to use that font.
