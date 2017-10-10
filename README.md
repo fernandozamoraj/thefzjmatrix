@@ -3,8 +3,8 @@ The Fzj Matrix is a screen saver for Windows (XP, Windows 7, Windows 8, Windows 
 
 If all you need is the installation file you can download the appropriate one from one of the links below.
 
-[MatrixSetup.msi](https://github.com/fernandozamoraj/thefzjmatrix/blob/master/MatrixSetup.msi)
-[setup.exe](https://github.com/fernandozamoraj/thefzjmatrix/blob/master/setup.exe)
+[MatrixSetup.msi](https://github.com/fernandozamoraj/thefzjmatrix/raw/master/MatrixSetup.msi)
+[setup.exe](https://github.com/fernandozamoraj/thefzjmatrix/raw/master/setup.exe)
 
 Check out the page at [github.io](https://fernandozamoraj.github.io/thefzjmatrix/)
 
